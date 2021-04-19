@@ -1,4 +1,4 @@
-# ts
+# ts([ts handbook](https://www.tslang.cn/docs/handbook/basic-types.html))
 my ts  learning record
 
 ## 1. TypeScript in Visual Studio Code
