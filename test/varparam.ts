@@ -13,7 +13,13 @@ class Person {
     
 };
 // const str:string = "max(0.5,min(0.7,$1.viplevel/10))"
-const str:string = "$1.age_ * $2.age_ + 1";
+const str:string = "max(3, $1.age_ * $2.age_ + 1)";
+let mathMap = new Map([
+    ["min", "Math.min"],
+    ["max", "Math.max"],
+]);
+
+
 function person(...params:any[]) {
     let count:Number = params.length;
     let strReplace:string = str;
@@ -21,6 +27,11 @@ function person(...params:any[]) {
         let index:number =  Number(val) + 1;
         let re=`\$${index}`;
         strReplace = strReplace.replace(re, `params[${val}]`);
+    }
+
+    for (const [key,value] of mathMap) {
+        strReplace = strReplace.replace(key, value);
+        console.log("mathMap:" + strReplace)
     }
     let ret = eval(strReplace)
     if(isNaN(ret)){
