@@ -46,3 +46,35 @@ console.log(f5(1)) // output:2
 f6(1) // number
 f6("11") // string
 f6(true) // unknow obj
+
+function foo() {
+    console.log("Hello");
+}
+
+setTimeout(foo, 3000)
+
+
+function bar(){
+    console.log('bar')
+    Promise.resolve().then(
+      (str) =>console.log('micro-bar')
+    ) 
+    setTimeout((str) =>console.log('macro-bar'),0)
+  }
+  
+  
+  function foo() {
+    console.log('foo')
+    Promise.resolve().then(
+      (str) =>console.log('micro-foo')
+    ) 
+    setTimeout((str) =>console.log('macro-foo'),0)
+    
+    bar()
+  }
+  foo()
+  console.log('global')
+  Promise.resolve().then(
+    (str) =>console.log('micro-global')
+  ) 
+  setTimeout((str) =>console.log('macro-global'),0)
